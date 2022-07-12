@@ -40,6 +40,9 @@ end
 group :test do 
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end 
 
 group :development do

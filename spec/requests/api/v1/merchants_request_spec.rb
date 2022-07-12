@@ -25,6 +25,8 @@ RSpec.describe 'Merchants Endpoints' do
 
           expect(merchant[:attributes]).to have_key(:name)
           expect(merchant[:attributes][:name]).to be_a(String)
+
+          expect(merchant[:attributes]).to_not have_key(:created_at)
         end
       end
     end
