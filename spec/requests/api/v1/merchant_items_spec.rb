@@ -17,6 +17,7 @@ RSpec.describe 'Get Merchant Items' do
         expect(parsed_items[:data].count).to eq(5)
         expect(parsed_items[:data][0][:attributes][:name]).to eq(items.first.name)
         expect(parsed_items[:data][0].keys.length).to eq(3)
+        expect(parsed_items[:data][0][:attributes].keys.length).to eq(4)
 
         parsed_items[:data].each do |item|
           # binding.pry
@@ -28,6 +29,17 @@ RSpec.describe 'Get Merchant Items' do
           expect(item[:attributes]).to_not have_key(:created_at)
         end
       end 
+    end
+
+    context 'sad path' do
+       it 'returns a 404 error with bad merchant id' do 
+        merchants = create_list(:merchant, 2)
+        items = create_list(:item, 3, merchant: merchants[0])
+
+        get "/api/v1/merchants/54920/items"
+
+        expect(response).to have_http_status(404)
+       end 
     end
   end
 end
