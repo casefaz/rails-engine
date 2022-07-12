@@ -7,4 +7,8 @@ class Api::V1::ItemsController < ApplicationController
     item = Item.find(params[:id])
     render json: ItemSerializer.new(item)
   end
+
+  def create
+    
+  end
 end
