@@ -29,4 +29,17 @@ RSpec.describe 'Merchants Endpoints' do
       end
     end
   end
+
+  describe 'get one merchant endpoint' do 
+    context 'happy path' do 
+      it 'sends information for the specific merchant requested' do 
+        merchant_list = create_list(:merchant, 3)
+
+         get "/api/v1/merchants/#{merchant_list[0].id}"
+
+         expect(response).to be_successful
+         expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
