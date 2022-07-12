@@ -37,16 +37,17 @@ RSpec.describe 'Merchants Endpoints' do
       it 'sends information for the specific merchant requested' do 
         merchant_list = create_list(:merchant, 3)
 
-         get "/api/v1/merchants/#{merchant_list[0].id}"
+        get "/api/v1/merchants/#{merchant_list[0].id}"
 
-         expect(response).to be_successful
-         expect(response).to have_http_status(200)
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
 
-         merchant = JSON.parse(response.body, symbolize_names: true)
+        merchant = JSON.parse(response.body, symbolize_names: true)
         #  binding.pry
 
-         expect(merchant[:data][:id].to_i).to eq(merchant_list.first.id)
-         expect(merchant[:data][:attributes][:name]).to eq(merchant_list.first.name)
+        expect(merchant[:data].keys.length).to eq(3)
+        expect(merchant[:data][:id].to_i).to eq(merchant_list.first.id)
+        expect(merchant[:data][:attributes][:name]).to eq(merchant_list.first.name)
       end
     end
   end
