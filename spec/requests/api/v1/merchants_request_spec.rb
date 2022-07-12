@@ -41,6 +41,12 @@ RSpec.describe 'Merchants Endpoints' do
 
          expect(response).to be_successful
          expect(response).to have_http_status(200)
+
+         merchant = JSON.parse(response.body, symbolize_names: true)
+        #  binding.pry
+
+         expect(merchant[:data][:id].to_i).to eq(merchant_list.first.id)
+         expect(merchant[:data][:attributes][:name]).to eq(merchant_list.first.name)
       end
     end
   end
