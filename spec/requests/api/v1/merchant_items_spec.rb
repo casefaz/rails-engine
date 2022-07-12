@@ -20,7 +20,6 @@ RSpec.describe 'Get Merchant Items' do
         expect(parsed_items[:data][0][:attributes].keys.length).to eq(4)
 
         parsed_items[:data].each do |item|
-          # binding.pry
           expect(item).to have_key(:id)
           expect(item[:attributes]).to have_key(:name)
           expect(item[:attributes]).to have_key(:merchant_id)
