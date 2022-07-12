@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :merchant do
-    name { "MyString" }
+    name { [Faker::Food.fruits, Faker::IndustrySegments].join(" ") }
   end
 end
