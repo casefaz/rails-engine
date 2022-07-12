@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     name { Faker::Commerce.product_name }
     description { Faker::Coffee.notes }
-    unit_price { (Faker::Number.between(2.5..500.0)).round(2) }
+    unit_price { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
     merchant
   end
 end

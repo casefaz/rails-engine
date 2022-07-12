@@ -12,7 +12,6 @@ RSpec.describe 'Merchant Show Page' do
         expect(response).to have_http_status(200)
 
         merchant = JSON.parse(response.body, symbolize_names: true)
-        #  binding.pry
 
         expect(merchant[:data].keys.length).to eq(3)
         expect(merchant[:data][:attributes].length).to eq(1)
