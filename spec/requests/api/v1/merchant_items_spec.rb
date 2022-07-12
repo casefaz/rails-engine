@@ -12,8 +12,10 @@ RSpec.describe 'Get Merchant Items' do
         expect(response).to be_successful
         expect(response).to have_http_status(200)
 
-        items = JSON.parse(response.body, symbolize_names: true)
-        binding.pry
+        parsed_items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(parsed_items[:data].count).to eq(5)
+        expect(parsed_items[:data][0][:attributes][:name]).to eq(items.first.name)
       end 
     end
   end
