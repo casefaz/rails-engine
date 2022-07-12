@@ -16,6 +16,17 @@ RSpec.describe 'Get Merchant Items' do
 
         expect(parsed_items[:data].count).to eq(5)
         expect(parsed_items[:data][0][:attributes][:name]).to eq(items.first.name)
+        expect(parsed_items[:data][0].keys.length).to eq(3)
+
+        parsed_items[:data].each do |item|
+          # binding.pry
+          expect(item).to have_key(:id)
+          expect(item[:attributes]).to have_key(:name)
+          expect(item[:attributes]).to have_key(:merchant_id)
+          expect(item[:attributes]).to have_key(:description)
+          expect(item[:attributes]).to have_key(:unit_price)
+          expect(item[:attributes]).to_not have_key(:created_at)
+        end
       end 
     end
   end
