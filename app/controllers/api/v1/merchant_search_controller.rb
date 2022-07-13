@@ -4,9 +4,14 @@ module Api
   module V1
     class MerchantSearchController < ApplicationController
       def show
-        # binding.pry
+        if params[:name] != ''
           merchant = Merchant.search_by_name(params[:name])
-          render json: MerchantSerializer.new(merchant)
+          if merchant
+            render json: MerchantSerializer.new(merchant)
+          else
+            render json: { data: { }, message: 'No matches'}, status: :ok
+          end 
+        end 
       end
     end
   end
