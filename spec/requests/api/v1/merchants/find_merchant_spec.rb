@@ -13,6 +13,13 @@ RSpec.describe 'Find a Merchant' do
 
         expect(response).to be_successful
         expect(response).to have_http_status(200)
+
+        found_merchant = JSON.parse(response.body, symbolize_names: true)
+
+        expect(found_merchant[:data][:attributes][:name]).to eq(merchant.name)
+        expect(found_merchant[:data][:attributes][:name]).to eq(merchant.name)
+        expect(found_merchant[:data].count).to eq(3)
+        expect(found_merchant[:data][:attributes].count).to eq(1)
       end 
     end
 
