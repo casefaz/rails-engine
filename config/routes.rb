@@ -5,12 +5,9 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show] do
         resources :items, only: [:index], controller: 'merchant_items'
       end 
+      resources :items, only: [:index, :show, :create, :destroy, :update] do 
+        get '/merchant', to: 'merchants#show'
+       end
     end
-  end
-
-  namespace :api do 
-    namespace :v1 do 
-       resources :items, only: [:index, :show, :create, :destroy, :update]
-    end 
   end
 end
