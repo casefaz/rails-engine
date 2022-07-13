@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Items Index' do 
+RSpec.describe 'Items Index' do
   describe 'fetch all items' do
-    it 'produces data' do 
+    it 'produces data' do
       items = create_list(:item, 5)
-      
-      get "/api/v1/items"
+
+      get '/api/v1/items'
 
       expect(response).to be_successful
       expect(response).to have_http_status(200)
@@ -24,6 +26,6 @@ RSpec.describe 'Items Index' do
         expect(item[:attributes]).to have_key(:unit_price)
         expect(item[:attributes]).to have_key(:merchant_id)
       end
-    end 
+    end
   end
 end

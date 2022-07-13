@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Item Show' do 
-  describe 'a single item fetch' do 
-    context 'happy path' do 
-      it 'produces the correct data' do 
+RSpec.describe 'Item Show' do
+  describe 'a single item fetch' do
+    context 'happy path' do
+      it 'produces the correct data' do
         items = create_list(:item, 3)
 
         get "/api/v1/items/#{items[0].id}"
@@ -21,14 +23,14 @@ RSpec.describe 'Item Show' do
       end
     end
 
-    context 'sad path' do 
-      it 'returns an error with a bad id' do 
+    context 'sad path' do
+      it 'returns an error with a bad id' do
         get '/api/v1/items/9043'
 
         expect(response).to have_http_status(404)
       end
 
-      it 'returns an error if the id is a string' do 
+      it 'returns an error if the id is a string' do
         get "/api/v1/items/'1'"
 
         expect(response).to have_http_status(404)
