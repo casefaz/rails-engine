@@ -3,7 +3,10 @@ class Api::V1::ItemsSearchController < ApplicationController
     # binding.pry
     if params[:name] != ''
       item = Item.find_all_items(params[:name])
-      if item
+      if item.empty?
+        # binding.pry
+        render json: { data: [], message: 'No matching items'}
+      else 
         render json: ItemSerializer.new(item)
       end
     end

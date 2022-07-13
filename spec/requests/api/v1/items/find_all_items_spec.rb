@@ -13,6 +13,32 @@ RSpec.describe 'Find All Items' do
 
         expect(response).to be_successful
         expect(response).to have_http_status(200)
+
+        found_items = JSON.parse(response.body, symbolize_names: true)
+        expect(found_items[:data].count).to eq(3)
+
+        found_items[:data].each do |item|
+          expect(item).to have_key(:id)
+          expect(item[:attributes].keys.count).to eq(4)
+          expect(item[:attributes]).to have_key(:name)
+          expect(item[:attributes]).to have_key(:description)
+          expect(item[:attributes]).to have_key(:merchant_id)
+          expect(item[:attributes]).to have_key(:unit_price)
+          expect(item[:attributes]).to_not have_key(:created_at)
+        end
+      end
+    end
+
+    context 'sad path' do 
+      it 'produces an error if there is no match' do 
+        get "/api/v1/items/find_all?name=deckofmanythings"
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(parsed_response[:message]).to eq('No matching items')
       end
     end
   end
