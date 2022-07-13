@@ -27,6 +27,7 @@ RSpec.describe 'Update Item' do
         merchant = create(:merchant)
         item = create(:item)
         previous_name = Item.last.name
+        previous_description = Item.last.description
         item_params = { 
                         name: "Super Cool Model Ship",
                         description: 'a model ship from anime one piece',
@@ -43,6 +44,7 @@ RSpec.describe 'Update Item' do
         expect(item.name).to eq("Super Cool Model Ship")
         expect(item.unit_price).to eq(102.45)
         expect(item.description).to eq('a model ship from anime one piece')
+        expect(item.description).to_not eq(previous_description)
 
         parsed_updated_item = JSON.parse(response.body, symbolize_names: true)
 
@@ -51,5 +53,13 @@ RSpec.describe 'Update Item' do
         expect(parsed_updated_item[:data][:attributes][:name]).to eq(item.name)
       end
     end 
+
+    context 'sad path' do 
+      it 'returns an error if the id is bad' do 
+        patch "/api/v1/items/999"
+
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 end
