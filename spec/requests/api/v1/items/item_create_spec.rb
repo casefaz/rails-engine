@@ -21,10 +21,26 @@ RSpec.describe 'Item Create' do
       expect(response).to have_http_status(201)
 
       parsed_created_item = JSON.parse(response.body, symbolize_names: true)
-      # binding.pry
+
       expect(parsed_created_item[:data][:id].to_i).to eq(created_item.id)
       expect(parsed_created_item[:data][:attributes][:name]).to eq(created_item.name)
       expect(parsed_created_item[:data][:attributes][:description]).to eq(created_item.description)
+      expect(parsed_created_item[:data][:attributes][:unit_price]).to eq(created_item.unit_price)
+      expect(parsed_created_item[:data][:attributes][:merchant_id]).to eq(created_item.merchant_id)
+    end
+  end
+
+  describe 'destruction, death, and uncreation' do 
+    it 'deletes the item' do 
+      item = create(:item)
+
+      expect(Item.count).to eq(1)
+
+      delete "/api/v1/items/#{item.id}"
+
+      expect(response).to be_successful
+      expect(Item.count).to eq(0)
+      expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
