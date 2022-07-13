@@ -11,7 +11,7 @@ RSpec.describe 'Find a Merchant' do
       get '/api/v1/merchants/find?name=otaku'
 
       expect(response).to be_successful
-      expect(response).to have_http_status(400)
+      expect(response).to have_http_status(200)
     end
   end
 end
