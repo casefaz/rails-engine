@@ -30,7 +30,7 @@ RSpec.describe 'Item Create' do
     end
   end
 
-  describe 'destruction, death, and uncreation' do 
+  describe 'destruction, removal, and uncreation' do 
     it 'deletes the item' do 
       item = create(:item)
 
