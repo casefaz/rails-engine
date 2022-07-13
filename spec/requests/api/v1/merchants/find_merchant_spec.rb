@@ -8,7 +8,7 @@ RSpec.describe 'Find a Merchant' do
       merchant = create(:merchant, name: 'Otaku Attic')
       merchant2 = create(:merchant, name: 'Barnes and Noble')
 
-      get "/api/v1/merchants/find?name=otaku"
+      get '/api/v1/merchants/find?name=otaku'
 
       expect(response).to be_successful
       expect(response).to have_http_status(400)
