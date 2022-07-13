@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
       get 'items/find_all', to: 'items_search#show'
       resources :items, only: %i[index show create destroy update] do
+        get '/merchant', to: 'merchants#show'
       end
     end
   end

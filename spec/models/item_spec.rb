@@ -10,7 +10,7 @@ RSpec.describe Item, type: :model do
   describe 'class methods' do 
     it '.find_all_items(query)' do 
       item1 = create(:item, name: 'white rice')
-      item1 = create(:item, name: 'brown rice')
+      item2 = create(:item, name: 'brown rice')
       item3 = create(:item, name: 'fried rice')
       item4 = create(:item, name: 'sesame ball')
       query = 'rice'
