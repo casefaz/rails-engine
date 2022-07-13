@@ -1,0 +1,5 @@
+## Describe your changes
+
+## Checklist before requesting a review
+- [ ] Passes Postman
+- [ ] Encompasses sad path with RSpec
