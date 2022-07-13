@@ -19,5 +19,19 @@ RSpec.describe 'Items Merchant' do
         expect(parsed_merchant[:data][:attributes][:name]).to eq(merchant.name)
       end
     end
+
+    context 'sad path' do 
+      it 'returns an error with a bad item id' do 
+        get "/api/v1/items/45293/merchant"
+
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns an error if the id comes through as a string' do 
+        get "/api/v1/items/'45293'/merchant"
+
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 end
