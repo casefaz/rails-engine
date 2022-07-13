@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Merchant Show Page' do 
-  describe 'get a single merchant endpoint' do 
-    context 'happy path' do 
-      it 'sends information for the specific merchant requested' do 
+RSpec.describe 'Merchant Show Page' do
+  describe 'get a single merchant endpoint' do
+    context 'happy path' do
+      it 'sends information for the specific merchant requested' do
         merchant_list = create_list(:merchant, 3)
 
         get "/api/v1/merchants/#{merchant_list[0].id}"
@@ -20,7 +22,7 @@ RSpec.describe 'Merchant Show Page' do
       end
     end
 
-    context 'sad path' do 
+    context 'sad path' do
       it 'returns an error message if id doesnt exist' do
         merchant_id = 101
 

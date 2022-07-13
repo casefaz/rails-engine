@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Get Merchant Items' do 
-  describe 'get the endpoints for the items belonging to a merchant' do 
-    context 'happy path' do 
-      it 'successfully produces the information' do 
+RSpec.describe 'Get Merchant Items' do
+  describe 'get the endpoints for the items belonging to a merchant' do
+    context 'happy path' do
+      it 'successfully produces the information' do
         merchants = create_list(:merchant, 2)
         items = create_list(:item, 5, merchant: merchants[0])
 
@@ -27,18 +29,18 @@ RSpec.describe 'Get Merchant Items' do
           expect(item[:attributes]).to have_key(:unit_price)
           expect(item[:attributes]).to_not have_key(:created_at)
         end
-      end 
+      end
     end
 
     context 'sad path' do
-       it 'returns a 404 error with bad merchant id' do 
+      it 'returns a 404 error with bad merchant id' do
         merchants = create_list(:merchant, 2)
         items = create_list(:item, 3, merchant: merchants[0])
 
-        get "/api/v1/merchants/54920/items"
+        get '/api/v1/merchants/54920/items'
 
         expect(response).to have_http_status(404)
-       end 
+      end
     end
   end
 end

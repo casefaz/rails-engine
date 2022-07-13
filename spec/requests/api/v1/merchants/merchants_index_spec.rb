@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Merchants Endpoints', type: :request do
-  describe 'get all merchants' do 
-    context 'happy path' do 
-      it 'sends a list of merchants' do 
+  describe 'get all merchants' do
+    context 'happy path' do
+      it 'sends a list of merchants' do
         merchant_list = create_list(:merchant, 5)
 
         get '/api/v1/merchants'
