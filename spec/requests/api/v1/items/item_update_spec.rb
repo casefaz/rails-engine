@@ -14,6 +14,12 @@ RSpec.describe 'Update Item' do
       expect(response).to be_successful
       expect(item.name).to_not eq(previous_name)
       expect(item.name).to eq("Super Cool Model Ship")
+
+      parsed_updated_item = JSON.parse(response.body, symbolize_names: true)
+
+      expect(parsed_updated_item[:data].keys.count).to eq(3)
+      expect(parsed_updated_item[:data][:attributes].keys.count).to eq(4)
+      expect(parsed_updated_item[:data][:attributes][:name]).to eq(item.name)
     end
   end
 end

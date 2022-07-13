@@ -18,9 +18,12 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    # binding.pry
     item = Item.update(params[:id], item_params)
-    render json: ItemSerializer.new(item)
+    if item.save
+      render json: ItemSerializer.new(item)
+    else
+      render :status => 404
+    end 
   end
 
   private
