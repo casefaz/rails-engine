@@ -18,7 +18,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    # binding.pry
     if Item.exists?(params[:id]) 
       item = Item.update(params[:id], item_params)
       if item.save

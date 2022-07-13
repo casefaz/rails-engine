@@ -55,8 +55,19 @@ RSpec.describe 'Update Item' do
     end 
 
     context 'sad path' do 
-      it 'returns an error if the id is bad' do 
-        patch "/api/v1/items/999"
+      it 'returns an error if the merchant id doesnt exist' do 
+        item = create(:item)
+        previous_name = Item.last.name
+        item_params = ({ name: 'Mechatro We Go', merchant_id: 89714 })
+        headers = {"CONTENT_TYPE" => 'application/json'}
+
+        patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate({item: item_params})
+
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns an error if the id is a string' do 
+        patch "/api/v1/items/'999'"
 
         expect(response).to have_http_status(404)
       end
