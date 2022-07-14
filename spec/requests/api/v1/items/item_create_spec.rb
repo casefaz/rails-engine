@@ -44,5 +44,21 @@ RSpec.describe 'Item Create' do
       expect(Item.count).to eq(0)
       expect { Item.find(item.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
+
+    it 'deletes the items associated invoice' do
+      item = create(:item)
+      invoice = create(:invoice)
+      invoice_item = create(:invoice_item, item: item, invoice: invoice)
+
+      delete "/api/v1/items/#{item.id}"
+      # binding.pry
+      expect(response).to be_successful
+      expect(Item.count).to eq(0)
+      expect(Invoice.count).to eq(0)
+      expect(InvoiceItem.count).to eq(0)
+      expect { Item.find(item.id) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { Invoice.find(invoice.id) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { InvoiceItem.find(invoice_item.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end

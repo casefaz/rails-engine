@@ -15,6 +15,8 @@ RSpec.describe 'Items Index' do
       parsed_items = JSON.parse(response.body, symbolize_names: true)
 
       expect(parsed_items[:data].count).to eq(5)
+      expect(parsed_items[:data]).to be_an(Array)
+      expect(parsed_items[:data][0]).to_not have_key(:relationships)
       expect(parsed_items[:data][0][:attributes][:name]).to eq(items.first.name)
       expect(parsed_items[:data][0].keys.length).to eq(3)
       expect(parsed_items[:data][0][:attributes].keys.length).to eq(4)

@@ -18,6 +18,7 @@ RSpec.describe 'Merchants Endpoints', type: :request do
         expect(merchants[:data].count).to eq(5)
         expect(merchants[:data]).to be_an(Array)
         expect(merchants[:data][0][:attributes][:name]).to eq(merchant_list.first.name)
+        expect(merchants[:data][0]).to_not have_key(:relationships)
 
         merchants[:data].each do |merchant|
           expect(merchant).to have_key(:id)
