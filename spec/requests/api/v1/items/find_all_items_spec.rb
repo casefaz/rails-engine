@@ -59,6 +59,22 @@ RSpec.describe 'Find All Items' do
 
           expect(parsed_max[:data].count).to eq(2)
         end
+
+        it 'min & max search' do 
+          item1 = create(:item, name: 'white rice', unit_price: 4.20)
+          item2 = create(:item, name: 'brown rice', unit_price: 3.50)
+          item3 = create(:item, name: 'fried rice', unit_price: 1.50)
+          item4 = create(:item, name: 'sesame ball', unit_price: 100.23)
+
+          get "/api/v1/items/find_all?min_price=1&max_price=4"
+
+          expect(response).to be_successful
+          expect(response).to have_http_status(200)
+
+          parsed_min_max = JSON.parse(response.body, symbolize_names: true)
+          # binding.pry
+          expect(parsed_min_max[:data].count).to eq(2)
+        end
       end 
     end
 
