@@ -5,8 +5,8 @@ class Merchant < ApplicationRecord
   has_many :invoices
 
   def self.search_by_name(query)
-    where("name ILIKE ?", "%#{query}%")
-    .order(:name)
-    .first
+    where('name ILIKE ?', "%#{query}%")
+      .order(:name)
+      .first
   end
 end

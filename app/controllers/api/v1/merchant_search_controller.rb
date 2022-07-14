@@ -9,9 +9,9 @@ module Api
           if merchant
             render json: MerchantSerializer.new(merchant)
           else
-            render json: { data: { }, message: 'No matches'}, status: :ok
-          end 
-        end 
+            render json: { data: {}, message: 'No matches' }, status: :ok
+          end
+        end
       end
     end
   end
