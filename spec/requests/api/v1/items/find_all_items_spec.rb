@@ -34,7 +34,12 @@ RSpec.describe 'Find All Items' do
         item3 = create(:item, name: 'fried rice', unit_price: 3.50)
         item4 = create(:item, name: 'sesame ball', unit_price: 100.23)
 
-        get "/api/v1/items/find_all?"
+        get "/api/v1/items/find_all?min_price=4"
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+
+        parsed_min = JSON.parse(response.body, symbolize_names: true)
       end
     end
 
@@ -46,8 +51,6 @@ RSpec.describe 'Find All Items' do
         expect(response).to have_http_status(200)
 
         parsed_response = JSON.parse(response.body, symbolize_names: true)
-
-        expect(parsed_response[:message]).to eq('No matching items')
       end
     end
   end
