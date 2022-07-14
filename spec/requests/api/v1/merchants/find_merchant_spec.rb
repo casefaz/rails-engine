@@ -31,7 +31,7 @@ RSpec.describe 'Find a Merchant' do
         expect(response).to have_http_status(200)
 
         no_data = JSON.parse(response.body, symbolize_names: true)
-        # binding.pry
+
         expect(no_data[:data]).to eq({})
         expect(no_data[:message]).to eq('No matches')
       end

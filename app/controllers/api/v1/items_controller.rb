@@ -34,8 +34,7 @@ module Api
         end
       end
 
-      #def only items (possibly model class method) - delete an item if it's not the only thing on the invoice, OR delete the whole invoice if it only has that item on it
-
+      # def only items (possibly model class method) - delete an item if it's not the only thing on the invoice, OR delete the whole invoice if it only has that item on it
 
       private
 

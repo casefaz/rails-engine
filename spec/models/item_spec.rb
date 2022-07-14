@@ -19,7 +19,7 @@ RSpec.describe Item, type: :model do
       expect(Item.find_name(query)).to_not include([item4])
     end
 
-    it '.find_min_price(price)' do 
+    it '.find_min_price(price)' do
       item1 = create(:item, name: 'white rice', unit_price: 1.00)
       item2 = create(:item, name: 'brown rice', unit_price: 2.00)
       item3 = create(:item, name: 'fried rice', unit_price: 3.00)
@@ -30,7 +30,7 @@ RSpec.describe Item, type: :model do
       expect(Item.find_min_price(price)).to_not include([item1])
     end
 
-    it '.find_max_price(price)' do 
+    it '.find_max_price(price)' do
       item1 = create(:item, name: 'white rice', unit_price: 1.00)
       item2 = create(:item, name: 'brown rice', unit_price: 2.00)
       item3 = create(:item, name: 'fried rice', unit_price: 3.00)
@@ -41,7 +41,7 @@ RSpec.describe Item, type: :model do
       expect(Item.find_max_price(price)).to_not include([item4])
     end
 
-    it '.find_min_and_max_price(min_price, max_price)' do 
+    it '.find_min_and_max_price(min_price, max_price)' do
       item1 = create(:item, name: 'white rice', unit_price: 1.00)
       item2 = create(:item, name: 'brown rice', unit_price: 2.00)
       item3 = create(:item, name: 'fried rice', unit_price: 3.00)

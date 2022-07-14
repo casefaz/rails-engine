@@ -11,11 +11,11 @@ class Item < ApplicationRecord
   end
 
   def self.find_min_price(price)
-    where('unit_price >= ?', "#{price}")
+    where('unit_price >= ?', price.to_s)
   end
 
   def self.find_max_price(price)
-    where('unit_price <= ?', "#{price}")
+    where('unit_price <= ?', price.to_s)
   end
 
   def self.find_min_and_max_price(min_price, max_price)

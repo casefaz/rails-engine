@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Find All Items' do
@@ -28,14 +30,14 @@ RSpec.describe 'Find All Items' do
         end
       end
 
-      describe 'search by price params' do 
-        it 'min search' do 
+      describe 'search by price params' do
+        it 'min search' do
           item1 = create(:item, name: 'white rice', unit_price: 4.20)
           item2 = create(:item, name: 'brown rice', unit_price: 4.00)
           item3 = create(:item, name: 'fried rice', unit_price: 3.50)
           item4 = create(:item, name: 'sesame ball', unit_price: 100.23)
 
-          get "/api/v1/items/find_all?min_price=4"
+          get '/api/v1/items/find_all?min_price=4'
 
           expect(response).to be_successful
           expect(response).to have_http_status(200)
@@ -44,13 +46,13 @@ RSpec.describe 'Find All Items' do
           expect(parsed_min[:data].count).to eq(3)
         end
 
-        it 'max search' do 
+        it 'max search' do
           item1 = create(:item, name: 'white rice', unit_price: 4.20)
           item2 = create(:item, name: 'brown rice', unit_price: 4.00)
           item3 = create(:item, name: 'fried rice', unit_price: 3.50)
           item4 = create(:item, name: 'sesame ball', unit_price: 100.23)
 
-          get "/api/v1/items/find_all?max_price=4"
+          get '/api/v1/items/find_all?max_price=4'
 
           expect(response).to be_successful
           expect(response).to have_http_status(200)
@@ -60,13 +62,13 @@ RSpec.describe 'Find All Items' do
           expect(parsed_max[:data].count).to eq(2)
         end
 
-        it 'min & max search' do 
+        it 'min & max search' do
           item1 = create(:item, name: 'white rice', unit_price: 4.20)
           item2 = create(:item, name: 'brown rice', unit_price: 3.50)
           item3 = create(:item, name: 'fried rice', unit_price: 1.50)
           item4 = create(:item, name: 'sesame ball', unit_price: 100.23)
 
-          get "/api/v1/items/find_all?min_price=1&max_price=4"
+          get '/api/v1/items/find_all?min_price=1&max_price=4'
 
           expect(response).to be_successful
           expect(response).to have_http_status(200)
@@ -75,7 +77,7 @@ RSpec.describe 'Find All Items' do
 
           expect(parsed_min_max[:data].count).to eq(2)
         end
-      end 
+      end
     end
 
     context 'sad path' do
@@ -89,9 +91,9 @@ RSpec.describe 'Find All Items' do
         expect(parsed_response[:data]).to eq([])
       end
 
-      xit 'gives an error if search by name and price' do
-        get "/api/v1/items/find_all?name=coriander&min_price=2"
-
+      it 'gives an error if search by name and price' do
+        get '/api/v1/items/find_all?name=coriander&min_price=2'
+        
         expect(response).to have_http_status(400)
       end
     end

@@ -45,7 +45,7 @@ RSpec.describe 'Item Create' do
       expect { Item.find(item.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it 'deletes the items associated invoice' do 
+    it 'deletes the items associated invoice' do
       item = create(:item)
       invoice = create(:invoice)
       invoice_item = create(:invoice_item, item: item, invoice: invoice)

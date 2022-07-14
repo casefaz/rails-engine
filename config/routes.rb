@@ -7,11 +7,11 @@ Rails.application.routes.draw do
       # namespace :merchants do
       #   resources :find, only: [:index], controller: 'search'
       # end
-      get 'merchants/find', to: 'merchant_search#show'
+      get 'merchants/find', to: 'merchants/search#index'
+      get 'items/find_all', to: 'items/search#index'
       resources :merchants, only: %i[index show] do
         resources :items, only: [:index], controller: 'merchant_items'
       end
-      get 'items/find_all', to: 'items_search#show'
       resources :items do
         get '/merchant', to: 'merchants#show'
       end
