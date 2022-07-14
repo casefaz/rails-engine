@@ -18,8 +18,6 @@ module Api
             elsif params[:max_price]
               item = Item.find_max_price(params[:max_price])
               render json: ItemSerializer.new(item)
-            else
-              render json: { response: 'Bad Request' }, status: :bad_request
             end
           else
             render json: { response: 'Bad Request' }, status: :bad_request
