@@ -6,7 +6,6 @@ class Api::V1::ItemsSearchController < ApplicationController
         render json: ItemSerializer.new(item)
       elsif params[:min_price] && params[:max_price]
         item = Item.find_min_and_max_price(params[:min_price], params[:max_price])
-        # binding.pry
         render json: ItemSerializer.new(item)
       elsif params[:min_price]
         item = Item.find_min_price(params[:min_price])

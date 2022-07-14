@@ -72,20 +72,27 @@ RSpec.describe 'Find All Items' do
           expect(response).to have_http_status(200)
 
           parsed_min_max = JSON.parse(response.body, symbolize_names: true)
-          # binding.pry
+
           expect(parsed_min_max[:data].count).to eq(2)
         end
       end 
     end
 
     context 'sad path' do
-      it 'produces an error if there is no match' do
+      it 'produces an empty array if no match' do
         get '/api/v1/items/find_all?name=deckofmanythings'
 
         expect(response).to be_successful
         expect(response).to have_http_status(200)
 
         parsed_response = JSON.parse(response.body, symbolize_names: true)
+        expect(parsed_response[:data]).to eq([])
+      end
+
+      xit 'gives an error if search by name and price' do
+        get "/api/v1/items/find_all?name=coriander&min_price=2"
+
+        expect(response).to have_http_status(400)
       end
     end
   end
