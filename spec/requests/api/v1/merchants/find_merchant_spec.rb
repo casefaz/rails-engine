@@ -37,7 +37,13 @@ RSpec.describe 'Find a Merchant' do
       end
 
       it 'produces an error with empty params' do 
-        get 'api/v1/merchants/find?name='
+        get '/api/v1/merchants/find?name='
+
+        expect(response).to have_http_status(400)
+      end
+
+      it 'gives an error with no params' do 
+        get '/api/v1/merchants/find'
 
         expect(response).to have_http_status(400)
       end

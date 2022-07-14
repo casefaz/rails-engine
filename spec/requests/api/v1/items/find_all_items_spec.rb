@@ -93,7 +93,19 @@ RSpec.describe 'Find All Items' do
 
       it 'gives an error if search by name and price' do
         get '/api/v1/items/find_all?name=coriander&min_price=2'
-        
+
+        expect(response).to have_http_status(400)
+      end
+
+      it 'gives an error if search by name and both prices' do 
+        get '/api/v1/items/find_all?name=coriander&min_price=2&max_price=5'
+
+        expect(response).to have_http_status(400)
+      end
+
+      it 'gives an error with empty query' do 
+        get '/api/v1/items/find_all'
+
         expect(response).to have_http_status(400)
       end
     end

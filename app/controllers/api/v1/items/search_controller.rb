@@ -27,7 +27,7 @@ module Api
         end
 
         def valid_query
-          name = params[:name] != '' && !params[:min_price] && !params[:max_price]
+          name = (params[:name] && params[:name] != '') && !params[:min_price] && !params[:max_price]
           min_or_max = !params[:name] && (!params[:min_price].nil? || !params[:max_price].nil?)
           min_and_max_price = !params[:name] && (!params[:min_price].nil? && !params[:max_price].nil?)
 
