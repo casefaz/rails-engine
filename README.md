@@ -5,7 +5,7 @@
 ![JSON Badge](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 ![Ruby/Rails](https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
 
-This project was created using test driven development combining both Postman and RSpec to test quality and efficiency of code. [Rails Engine Requirements](https://backend.turing.edu/module3/projects/rails_engine_lite/requirements)
+Utilizing service-oriented architecture this project exposes the data powering a movie database through RESTful conventions and test driven development. [Rails Engine Requirements](https://backend.turing.edu/module3/projects/rails_engine_lite/requirements)
   * [Go to testing section](#testing)
   * [Go to endpoints](#endpoints)
   * [Go to potential refactor opportunity](#potential-refactor)
