@@ -16,6 +16,11 @@ module Api
           render json: MerchantSerializer.new(merchant2)
         end
       end
+
+      def most_items
+        merchants = Merchant.most_items(params[:quantity])
+        render json: MerchantNameCountSerializer.new(merchants)
+      end
     end
   end
 end
