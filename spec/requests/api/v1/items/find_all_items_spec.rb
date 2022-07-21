@@ -92,9 +92,9 @@ RSpec.describe 'Find All Items' do
       end
 
       it 'gives an error if search by name and price' do
-        get '/api/v1/items/find_all?name=coriander&min_price=2'
+      get '/api/v1/items/find_all?name=coriander&min_price=2'
 
-        expect(response).to have_http_status(400)
+      expect(response).to have_http_status(400)
       end
 
       it 'gives an error if search by name and both prices' do 
